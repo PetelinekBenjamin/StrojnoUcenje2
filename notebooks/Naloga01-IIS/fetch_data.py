@@ -5,15 +5,15 @@ import requests
 import json
 
 
-# URL za API
+# URL
 url = "https://api.jcdecaux.com/vls/v1/stations?contract=maribor&apiKey=5e150537116dbc1786ce5bec6975a8603286526b"
 
-# Pridobivanje podatkov iz API-ja
+# Pridobivanje podatkov
 response = requests.get(url)
 
-# Preverjanje, če je bil zahtevek uspešen
+# Preverjanje zahtevka
 if response.status_code == 200:
-    # Pretvorba odgovora v json format
+    # json format
     data = response.json()
 
     with open('C:/Users/benja/Desktop/Stuff/Šola/Strojno ucenje2/data/raw/api_data.json', 'w') as f:
