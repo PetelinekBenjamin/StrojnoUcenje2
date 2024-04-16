@@ -5,6 +5,8 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  schedule:
+    - cron: '0 * * * *'  # Ta vrstica pomeni, da se akcija izvede ob začetku vsake ure
 
 jobs:
 
@@ -38,4 +40,3 @@ jobs:
         git add data/raw/api_data.json
         git commit -m "Update api_data.json"
         git push
-
