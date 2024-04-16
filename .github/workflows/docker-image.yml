@@ -26,9 +26,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run flake8
-      run: python test.py
+      run: flake8
 
-
-
-
-      
+    - name: Run fetch_data.py
+      run: python fetch_data.py
