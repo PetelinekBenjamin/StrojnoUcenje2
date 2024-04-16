@@ -29,7 +29,7 @@ if response.status_code == 200:
 
 
     # Pot do datoteke
-    file_path = 'C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/data/raw/api_data.json'
+    file_path = 'data/raw/api_data.json'
 
     # Če datoteka že obstaja in ni prazna, preberi obstoječe podatke
     if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
@@ -88,7 +88,7 @@ if response.status_code == 200:
     data = response.json()
 
     # Shranjevanje podatkov v mapi (data/raw/weather) v lepši obliki
-    weather_data_path = 'C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/data/raw/Weather/weather_data.json'
+    weather_data_path = 'data/raw/Weather/weather_data.json'
     with open(weather_data_path, 'w') as f:
         json.dump(data, f, indent=4)
 
