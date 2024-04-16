@@ -60,6 +60,7 @@ if response.status_code == 200:
 
 
 
+
 url = "https://api.open-meteo.com/v1/forecast"
 
 # Določitev trenutnega časa
