@@ -4,7 +4,7 @@ import unittest
 
 class TestCodeQuality(unittest.TestCase):
     def test_code_quality(self):
-        # Poženemo flake8, da preverimo kakovost kode
+        # preverimo kakovost kode
         result = subprocess.run(['flake8', '--exclude', '.git,__pycache__,venv', '--count', '--select=E9,F63,F7,F82', '--show-source', '--statistics'], stdout=subprocess.PIPE)
 
         # Če je število najdenih napak večje od 0, test pade

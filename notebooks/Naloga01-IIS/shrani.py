@@ -23,7 +23,7 @@ if response.status_code == 200:
     df['last_update'] = pd.to_datetime(df['last_update'], unit='ms').dt.tz_localize('UTC').dt.tz_convert('CET')
 
 
-# Shranjevanje
+    # Shranjevanje
     output_directory = 'C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/data/processed'
     os.makedirs(output_directory, exist_ok=True)
 

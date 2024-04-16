@@ -18,16 +18,16 @@ pot_do_datoteke = 'C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/data/raw/mb
 
 df = pd.read_csv(pot_do_datoteke, parse_dates=['date'], index_col='date')
 
-# Pretvori DataFrame nazaj v JSON
+
 json_data = df.head(60).to_json(orient='records', date_format='iso')
 
-# Definiraj pot do datoteke, kamor želite shraniti JSON
+# pot
 pot_do_json_datoteke = "C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/data/raw/mbajk_dataset.json"
 
-# Pretvori DataFrame nazaj v JSON
+
 json_data = df.to_json(orient='records', date_format='iso')
 
-# Odpremo datoteko za pisanje
+# pisanje
 with open(pot_do_json_datoteke, 'w') as json_file:
     # Zapišemo JSON podatke v datoteko
     json_file.write(json_data)
@@ -36,13 +36,13 @@ with open(pot_do_json_datoteke, 'w') as json_file:
 
 print("JSON podatki so bili uspešno shranjeni v datoteko:", pot_do_json_datoteke)
 
-# Izpis števila manjkajočih vrednosti v vsakem stolpcu
+# manjkajoče
 print(df.isnull().sum())
 
 # Sortiranje zapisov glede na čas
 df.sort_index(inplace=True)
 
-# Izris grafa vrednosti izposoje koles glede na čas
+# Izris grafa
 plt.figure(figsize=(12, 6))
 plt.plot(df.index, df['available_bike_stands'], label='available_bike_stands')
 plt.xlabel('Datum')
@@ -59,12 +59,12 @@ y_train_temp = df_train['temperature']
 y_train_PP = df_train['precipitation_probability']
 y_train_rain = df_train['rain']
 
-# Ustvarjanje modelov Random Forest za vsak stolpec z manjkajočimi vrednostmi
+
 rf_model_temp = RandomForestRegressor()
 rf_model_PP = RandomForestRegressor()
 rf_model_rain = RandomForestRegressor()
 
-# Učenje modelov
+# Učenje
 rf_model_temp.fit(X_train, y_train_temp)
 rf_model_PP.fit(X_train, y_train_PP)
 rf_model_rain.fit(X_train, y_train_rain)
@@ -72,25 +72,25 @@ rf_model_rain.fit(X_train, y_train_rain)
 # Manjkajoči X
 X_missing = df[df.isnull().any(axis=1)].drop(['temperature', 'precipitation_probability', 'rain'], axis=1)
 
-# Napovedovanje manjkajočih vrednosti
+# Napovedovanje
 predictions_temp = rf_model_temp.predict(X_missing)
 predictions_PP = rf_model_PP.predict(X_missing)
 predictions_rain = rf_model_rain.predict(X_missing)
 
-# Napovedovanje manjkajočih vrednosti
+
 predictions_temp = rf_model_temp.predict(X_missing)
 predictions_PP = rf_model_PP.predict(X_missing)
 predictions_rain = rf_model_rain.predict(X_missing)
 
-# Dodelitev napovedanih vrednosti nazaj v podatkovni okvir
+# Dodelitev
 df.loc[df['temperature'].isnull(), 'temperature'] = predictions_temp[:len(df.loc[df['temperature'].isnull()])]
 df.loc[df['precipitation_probability'].isnull(), 'precipitation_probability'] = predictions_PP[:len(df.loc[df['precipitation_probability'].isnull()])]
 df.loc[df['rain'].isnull(), 'rain'] = predictions_rain[:len(df.loc[df['rain'].isnull()])]
 
-# Preverjanje, če so vse vrednosti zapolnjene
+# Preverjanje
 print(df.isnull().sum())
 
-# Pretvorba indeksa df v datumske objekte
+# datumski objekti
 datum = pd.to_datetime(df.index, format='%d/%m/%Y')
 
 # Dodajanje stolpcev day, month in year
@@ -201,15 +201,15 @@ print("Oblika y_pred:", y_pred.shape)
 print("Oblika y_test:", y_test.shape)
 
 
-# Izračun metrike MSE na testnih podatkih
+
 mse = mean_squared_error(y_test, y_pred)
 print("Mean Squared Error on Test Data:", mse)
 
-# Izračun metrike MAE na testnih podatkih
+
 mae = mean_absolute_error(y_test, y_pred)
 print("Mean Absolute Error on Test Data:", mae)
 
-# Izračun R^2 na testnih podatkih
+
 r2 = r2_score(y_test, y_pred)
 print("R^2 on Test Data:", r2)
 
@@ -227,12 +227,12 @@ train_metrics = {
     'R^2': r2_score(y_train, model_lstm.predict(X_train))
 }
 
-# Shranjevanje metrik nad učnimi podatki v datoteko
+# Shranjevanje metrik nad učnimi podatki
 with open(r"C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/reports/train_metrics.txt", 'w') as f:
     for metric, value in train_metrics.items():
         f.write(f'{metric}: {value}\n')
 
-# Zbiranje metrik nad testnimi podatki
+
 test_metrics = {
     'MSE': mse,
     'MAE': mae,
