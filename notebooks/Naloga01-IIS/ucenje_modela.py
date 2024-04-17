@@ -13,28 +13,11 @@ import numpy as np
 
 
 
-pot_do_datoteke = 'C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/data/raw/mbajk_dataset.csv'
+pot_do_datoteke = 'C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/data/processed/GOSPOSVETSKA C - TURNERJEVA UL.csv'
 
 
-df = pd.read_csv(pot_do_datoteke, parse_dates=['date'], index_col='date')
+df = pd.read_csv(pot_do_datoteke, parse_dates=['last_update'], index_col='last_update')
 
-
-json_data = df.head(60).to_json(orient='records', date_format='iso')
-
-# pot
-pot_do_json_datoteke = "C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/data/raw/mbajk_dataset.json"
-
-
-json_data = df.to_json(orient='records', date_format='iso')
-
-# pisanje
-with open(pot_do_json_datoteke, 'w') as json_file:
-    # Zapišemo JSON podatke v datoteko
-    json_file.write(json_data)
-
-
-
-print("JSON podatki so bili uspešno shranjeni v datoteko:", pot_do_json_datoteke)
 
 # manjkajoče
 print(df.isnull().sum())
