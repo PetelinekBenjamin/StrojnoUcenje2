@@ -40,6 +40,6 @@ jobs:
       run: |
         git config user.name "Benjamin"
         git config user.email "benjamin.petelinek@gmail.com"
-        git add data/raw/api_data.json
-        git commit -m "Update api_data.json"
+        git add .
+        git commit -m "Update changes"
         git push
