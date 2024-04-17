@@ -4,8 +4,8 @@ import datetime
 import pytz
 
 # Poti do datotek
-station_data_path = 'C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/data/raw/api_data.json'
-weather_data_path = 'C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/data/raw/Weather/weather_data.json'
+station_data_path = 'data/raw/api_data.json'
+weather_data_path = 'data/raw/Weather/weather_data.json'
 
 # Naloži podatke o postajališču
 with open(station_data_path, 'r') as f:
@@ -63,7 +63,7 @@ for index, row in df_station.iterrows():
     df_station.at[index, 'precipitation_probability'] = precipitation_probability
 
     # Navedite pot in ime datoteke za shranjevanje
-    csv_file_path = 'C:/Users/benja/Desktop/Stuff/Sola/Strojno ucenje2/data/processed/GOSPOSVETSKA C - TURNERJEVA UL.csv'
+    csv_file_path = 'data/processed/GOSPOSVETSKA C - TURNERJEVA UL.csv'
 
     # Uporabite metodo to_csv() za shranjevanje DataFrame kot CSV
     df_station.to_csv(csv_file_path, index=False)  # Nastavite index=False, če ne želite shraniti indeksa
